@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
+using CreoHp.Api.Attributes;
 using CreoHp.Common;
 using CreoHp.Contracts;
 using CreoHp.Dto.Pagination;
@@ -8,14 +10,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CreoHp.Api.Controllers
 {
-    [ApiController, Authorize, Route("api/[controller]")]
+    [ApiController, AuthorizeHp(UserRole.Admin), Route("api/[controller]")]
     public class UsersController : ControllerBase
     {
         readonly IUsersService _usersService;
 
         public UsersController(IUsersService usersService)
         {
-            _usersService = usersService;
+            _usersService = usersService ?? throw new ArgumentException(nameof(usersService));
         }
 
         [HttpPost("signIn"), AllowAnonymous]
@@ -24,7 +26,7 @@ namespace CreoHp.Api.Controllers
         [HttpPost("signUp"), AllowAnonymous]
         public Task<SignedInDto> SignUpAsync(SignUpDto signUp) => _usersService.SignUp(signUp, UserRole.User);
 
-        [HttpGet("search"), AllowAnonymous]
+        [HttpGet("search")]
         public Task<SimplePage<UserWithRolesDto>> Search([FromQuery] UserRequestCriteria criteria) =>
             _usersService.Search(criteria);
     }
