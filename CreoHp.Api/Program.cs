@@ -13,6 +13,8 @@ namespace CreoHp.Api
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseKestrel()
+                .UseUrls("http://localhost:5000", "https://localhost:5001", "http://192.168.1.10:5000", "https://192.168.1.10:5001")
                 .UseConfiguration(ConfigurationExtensions.Create())
                 .UseStartup<Startup>();
     }
