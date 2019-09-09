@@ -16,7 +16,8 @@ namespace CreoHp.Api.Extensions
             .AddSingleton<IRolesHelper>(DbInitializer.Instance)
             .AddSingleton<IDbInterceptor, DbInterceptor>()
             .AddScoped<IPrincipalService, PrincipalService>()
-            .AddScoped<IUsersService, UsersService>();
+            .AddScoped<IUsersService, UsersService>()
+            .AddScoped<ITagsService, TagsService>();
 
         static IServiceCollection ConfigureOptions(this IServiceCollection services
             , IConfiguration configuration)

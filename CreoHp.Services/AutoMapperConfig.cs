@@ -3,7 +3,9 @@ using System.Linq;
 using AutoMapper;
 using CreoHp.Contracts;
 using CreoHp.Dto.Pagination;
+using CreoHp.Dto.Tags;
 using CreoHp.Dto.Users;
+using CreoHp.Models.Tags;
 using CreoHp.Models.Users;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -18,6 +20,7 @@ namespace CreoHp.Services
 
             ConfigurePagination(config);
             ConfigureUsers(config, rolesHelper);
+            ConfigureTags(config);
         }
 
         static void ConfigurePagination(IProfileExpression config)
@@ -46,6 +49,11 @@ namespace CreoHp.Services
             config.CreateMap<AppIdentityUser, SignedInDto>()
                 .IncludeBase<AppIdentityUser, UserWithRolesDto>()
                 .ForMember(d => d.Token, opt => opt.Ignore());
+        }
+
+        static void ConfigureTags(IProfileExpression config)
+        {
+            config.CreateMap<Tag, TagDto>();
         }
     }
 }
