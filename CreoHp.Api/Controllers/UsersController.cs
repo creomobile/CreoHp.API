@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CreoHp.Api.Controllers
 {
-    [ApiController, AuthorizeHp(UserRole.Admin), Route("api/[controller]")]
+    [ApiController, AuthorizeHp(UserRole.Admin), Route("api/users")]
     public class UsersController : ControllerBase
     {
         readonly IUsersService _usersService;

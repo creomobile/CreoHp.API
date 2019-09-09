@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CreoHp.Api.Controllers
 {
-    [ApiController, AuthorizeHp(UserRole.Admin, UserRole.Editor), Route("api/[controller]")]
+    [ApiController, AuthorizeHp(UserRole.Admin, UserRole.Editor), Route("api/tags")]
     public class TagsController : ControllerBase
     {
         ITagsService _tagsService;
