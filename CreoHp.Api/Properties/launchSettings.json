@@ -16,7 +16,7 @@
       }
     },
     "CreoHp.Api": {
-      "commandName": "IISExpress",
+      "commandName": "Project",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
