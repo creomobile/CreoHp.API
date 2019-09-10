@@ -2,6 +2,7 @@
 using CreoHp.Common;
 using CreoHp.Contracts;
 using CreoHp.Dto.Tags;
+using CreoHp.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ namespace CreoHp.Api.Controllers
     [ApiController, AuthorizeHp(UserRole.Admin, UserRole.Editor), Route("api/tags")]
     public class TagsController : ControllerBase
     {
-        ITagsService _tagsService;
+        readonly ITagsService _tagsService;
 
         public TagsController(ITagsService tagsService)
         {
@@ -19,7 +20,6 @@ namespace CreoHp.Api.Controllers
         }
 
         [HttpGet("phrases")]
-        public Task<TagDto[]> GetPhrasesTags() =>
-            _tagsService.GetTagsByTypes(TagType.PhraseСharacter, TagType.PhraseSubject, TagType.PhraseType);
+        public Task<TagDto[]> GetPhrasesTags() => _tagsService.GetTagsByTypes(TagsService.PhraseTags);
     }
 }

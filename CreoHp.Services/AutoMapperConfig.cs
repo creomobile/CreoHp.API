@@ -3,8 +3,10 @@ using System.Linq;
 using AutoMapper;
 using CreoHp.Contracts;
 using CreoHp.Dto.Pagination;
+using CreoHp.Dto.Phrases;
 using CreoHp.Dto.Tags;
 using CreoHp.Dto.Users;
+using CreoHp.Models.Phrases;
 using CreoHp.Models.Tags;
 using CreoHp.Models.Users;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,6 +23,7 @@ namespace CreoHp.Services
             ConfigurePagination(config);
             ConfigureUsers(config, rolesHelper);
             ConfigureTags(config);
+            ConfigurePhrases(config);
         }
 
         static void ConfigurePagination(IProfileExpression config)
@@ -54,6 +57,19 @@ namespace CreoHp.Services
         static void ConfigureTags(IProfileExpression config)
         {
             config.CreateMap<Tag, TagDto>();
+        }
+
+        static void ConfigurePhrases(IProfileExpression config)
+        {
+            config.CreateMap<Phrase, PhraseDto>()
+                .ForMember(d => d.TagIds, opt => opt.MapFrom(s => s.Tags.Select(_ => _.TagId).ToArray()));
+            config.CreateMap<CreatePhraseDto, Phrase>()
+                .ForMember(d => d.Text, opt => opt.MapFrom(s => s.Text))
+                .AfterMap((s, d) => d.Tags = s.TagIds.Select(_ => new PhraseTag { PhraseId = d.Id, TagId = _ }).ToArray())
+                .ForAllOtherMembers(opt => opt.Ignore());
+            config.CreateMap<PhraseDto, Phrase>()
+                .IncludeBase<CreatePhraseDto, Phrase>()
+                .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id));
         }
     }
 }

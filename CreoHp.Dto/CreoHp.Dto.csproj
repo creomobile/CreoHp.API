@@ -8,8 +8,4 @@
     <ProjectReference Include="..\CreoHp.Common\CreoHp.Common.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Phrases\" />
-  </ItemGroup>
-
 </Project>

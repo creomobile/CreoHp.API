@@ -20,14 +20,14 @@ namespace CreoHp.Api.Controllers
             _usersService = usersService ?? throw new ArgumentException(nameof(usersService));
         }
 
+        [HttpGet]
+        public Task<SimplePage<UserWithRolesDto>> Search([FromQuery] UserRequestCriteria criteria) =>
+            _usersService.Search(criteria);
+
         [HttpPost("signIn"), AllowAnonymous]
         public Task<SignedInDto> SignInAsync(SignInDto signIn) => _usersService.SignIn(signIn);
 
         [HttpPost("signUp"), AllowAnonymous]
         public Task<SignedInDto> SignUpAsync(SignUpDto signUp) => _usersService.SignUp(signUp, UserRole.User);
-
-        [HttpGet("search")]
-        public Task<SimplePage<UserWithRolesDto>> Search([FromQuery] UserRequestCriteria criteria) =>
-            _usersService.Search(criteria);
     }
 }
