@@ -45,7 +45,7 @@ namespace CreoHp.Api.Extensions
                         ValidAudience = authConfig.Audience,
                         ValidateIssuerSigningKey = true,
                         ValidateLifetime = true,
-                        ClockSkew = TimeSpan.FromHours(1)
+                        ClockSkew = TimeSpan.FromDays(30)
                     };
                 });
 
