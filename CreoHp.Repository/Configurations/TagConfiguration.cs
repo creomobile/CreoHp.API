@@ -36,7 +36,7 @@ namespace CreoHp.Repository.Configurations
                 {
                     Id = new Guid("AB3A769A-E800-4E48-97B5-A577BAF5AC86"),
                     Name = "Neutral",
-                    Type = TagType.PhraseСharacter,
+                    Type = TagType.PhraseCharacter,
                     Position = 0,
                     //ModifiedByUserId = Consts.SystemUserId
                     //CreatedAt = date,
@@ -46,7 +46,7 @@ namespace CreoHp.Repository.Configurations
                 {
                     Id = new Guid("C1F30EE9-EC04-448C-A5CC-3FE22C64E52A"),
                     Name = "Positive",
-                    Type = TagType.PhraseСharacter,
+                    Type = TagType.PhraseCharacter,
                     Position = 1,
                     //ModifiedByUserId = Consts.SystemUserId
                     //CreatedAt = date,
@@ -56,7 +56,7 @@ namespace CreoHp.Repository.Configurations
                 {
                     Id = new Guid("A21869D5-C093-48CB-9CE0-C80D2E08D5BD"),
                     Name = "Negative",
-                    Type = TagType.PhraseСharacter,
+                    Type = TagType.PhraseCharacter,
                     Position = 2,
                     //ModifiedByUserId = Consts.SystemUserId
                     //CreatedAt = date,

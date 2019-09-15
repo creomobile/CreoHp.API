@@ -2,7 +2,7 @@
 {
     public enum TagType
     {
-        PhraseСharacter = 0,
+        PhraseCharacter = 0,
         PhraseSubject = 1,
         PhraseType = 2
     }

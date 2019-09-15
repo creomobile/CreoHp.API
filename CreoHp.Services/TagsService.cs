@@ -12,7 +12,7 @@ namespace CreoHp.Services
 {
     public sealed class TagsService : ITagsService
     {
-        public static readonly TagType[] PhraseTags = new[] { TagType.PhraseСharacter, TagType.PhraseSubject, TagType.PhraseType };
+        public static readonly TagType[] PhraseTags = new[] { TagType.PhraseCharacter, TagType.PhraseSubject, TagType.PhraseType };
 
         readonly AppDbContext _dbContext;
         readonly IMapper _mapper;
