@@ -10,6 +10,6 @@ namespace CreoHp.Contracts
         Task<SignedInDto> SignUp(SignUpDto signUp, params UserRole[] roles);
         Task<SignedInDto> SignIn(SignInDto signIn);
         Task<SimplePage<UserWithRolesDto>> Search(UserRequestCriteria criteria);
-        Task<UserDto> GetCurrentUser();
+        Task<SignedInDto> RenewToken();
     }
 }

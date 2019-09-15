@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CreoHp.Api.Controllers
 {
-    [ApiController, AuthorizeHp(UserRole.Admin), Route("api/users")]
+    [ApiController, Route("api/users")]
     public class UsersController : ControllerBase
     {
         readonly IUsersService _usersService;
@@ -20,7 +20,7 @@ namespace CreoHp.Api.Controllers
             _usersService = usersService ?? throw new ArgumentException(nameof(usersService));
         }
 
-        [HttpGet]
+        [HttpGet, AuthorizeHp(UserRole.Admin)]
         public Task<SimplePage<UserWithRolesDto>> Search([FromQuery] UserRequestCriteria criteria) =>
             _usersService.Search(criteria);
 
@@ -29,5 +29,8 @@ namespace CreoHp.Api.Controllers
 
         [HttpPost("signUp"), AllowAnonymous]
         public Task<SignedInDto> SignUpAsync(SignUpDto signUp) => _usersService.SignUp(signUp, UserRole.User);
+
+        [HttpGet("renewToken")]
+        public Task<SignedInDto> RenewToken() => _usersService.RenewToken();
     }
 }

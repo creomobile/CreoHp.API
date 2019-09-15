@@ -111,9 +111,10 @@ namespace CreoHp.Services
             return result;
         }
 
-        public Task<UserDto> GetCurrentUser()
+        public async Task<SignedInDto> RenewToken()
         {
-            throw new NotImplementedException();
+            var user = await _principalService.GetCurrentUser();
+            return await GetToken(user);
         }
 
         async Task<SignedInDto> GetToken(AppIdentityUser user)
