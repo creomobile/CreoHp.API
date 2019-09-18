@@ -1,6 +1,8 @@
 ﻿using CreoHp.Api.Extensions;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using System.Net;
+using System.Security.Cryptography.X509Certificates;
 
 namespace CreoHp.Api
 {
@@ -13,8 +15,14 @@ namespace CreoHp.Api
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseKestrel()
-                .UseUrls("http://localhost:5000", "https://localhost:5001", "http://192.168.1.10:5000", "https://192.168.1.10:5001")
+                .UseKestrel(options =>
+                {
+                    options.Listen(IPAddress.Parse("192.168.1.10"), 5000);
+                    options.Listen(IPAddress.Parse("192.168.1.10"), 5001, listenOptions =>
+                    {
+                        listenOptions.UseHttps(storeName: StoreName.My, "*.creomobile.com");
+                    });
+                })
                 .UseConfiguration(ConfigurationExtensions.Create())
                 .UseStartup<Startup>();
     }
