@@ -22,7 +22,7 @@ namespace CreoHp.Api
                 .AddDbContext(Configuration)
                 .AddAuthenticationServices(Configuration)
                 .AddDependencies(Configuration)
-                .AddCors()
+                .AddAppCors()
                 .AddSwaggerServices()
                 .AddMvc(options =>
                 {
@@ -39,7 +39,7 @@ namespace CreoHp.Api
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseCors();
+            app.UseAppCors();
 
             if (env.IsDevelopment())
             {
@@ -51,7 +51,7 @@ namespace CreoHp.Api
             }
 
             app
-                .UseHttpsRedirection()
+                //.UseHttpsRedirection()
                 .UseStaticFiles()
                 .UseSwagger()
                 .UseAuthentication()
