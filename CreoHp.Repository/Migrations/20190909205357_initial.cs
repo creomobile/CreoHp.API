@@ -167,7 +167,7 @@ namespace CreoHp.Repository.Migrations
                     UpdatedAt = table.Column<DateTime>(nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false),
                     ModifiedByUserId = table.Column<Guid>(nullable: true),
-                    Text = table.Column<string>(nullable: false)
+                    Text = table.Column<string>(maxLength: 450, nullable: false)
                 },
                 constraints: table =>
                 {

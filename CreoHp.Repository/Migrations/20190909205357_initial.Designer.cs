@@ -35,6 +35,7 @@ namespace CreoHp.Repository.Migrations
 
                     b.Property<string>("Text")
                         .IsRequired()
+                        .HasMaxLength(450)
                         .IsUnicode(true);
 
                     b.Property<DateTime>("UpdatedAt")

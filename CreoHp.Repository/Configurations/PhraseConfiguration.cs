@@ -1,4 +1,5 @@
-﻿using CreoHp.Models.Phrases;
+﻿using CreoHp.Common;
+using CreoHp.Models.Phrases;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -8,7 +9,10 @@ namespace CreoHp.Repository.Configurations
     {
         protected override void ConfigureModel(EntityTypeBuilder<Phrase> builder)
         {
-            builder.Property(_ => _.Text).IsRequired().IsUnicode();
+            builder.Property(_ => _.Text)
+                .IsRequired()
+                .IsUnicode()
+                .HasMaxLength(Consts.MaxIndexString);
 
             builder.HasIndex(_ => _.Text).IsUnique();
 
