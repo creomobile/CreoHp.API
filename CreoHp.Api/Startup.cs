@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace CreoHp.Api
 {
@@ -31,8 +33,8 @@ namespace CreoHp.Api
                 })
                 .AddJsonOptions(options =>
                 {
-                    options.SerializerSettings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter());
-                    options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Include;
+                    options.SerializerSettings.Converters.Add(new StringEnumConverter(true));
+                    options.SerializerSettings.NullValueHandling = NullValueHandling.Include;
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
