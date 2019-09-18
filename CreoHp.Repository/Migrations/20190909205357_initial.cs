@@ -167,7 +167,7 @@ namespace CreoHp.Repository.Migrations
                     UpdatedAt = table.Column<DateTime>(nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false),
                     ModifiedByUserId = table.Column<Guid>(nullable: true),
-                    Text = table.Column<string>(nullable: true)
+                    Text = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -315,6 +315,12 @@ namespace CreoHp.Repository.Migrations
                 name: "IX_Phrases_ModifiedByUserId",
                 table: "Phrases",
                 column: "ModifiedByUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Phrases_Text",
+                table: "Phrases",
+                column: "Text",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_PhraseTags_TagId",

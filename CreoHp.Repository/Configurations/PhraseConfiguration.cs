@@ -8,7 +8,9 @@ namespace CreoHp.Repository.Configurations
     {
         protected override void ConfigureModel(EntityTypeBuilder<Phrase> builder)
         {
-            builder.Property(_ => _.Text).IsUnicode();
+            builder.Property(_ => _.Text).IsRequired().IsUnicode();
+
+            builder.HasIndex(_ => _.Text).IsUnique();
 
             builder
                 .HasMany(_ => _.Tags)

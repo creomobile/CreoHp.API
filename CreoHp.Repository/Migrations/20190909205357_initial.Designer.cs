@@ -34,6 +34,7 @@ namespace CreoHp.Repository.Migrations
                     b.Property<Guid?>("ModifiedByUserId");
 
                     b.Property<string>("Text")
+                        .IsRequired()
                         .IsUnicode(true);
 
                     b.Property<DateTime>("UpdatedAt")
@@ -42,6 +43,9 @@ namespace CreoHp.Repository.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ModifiedByUserId");
+
+                    b.HasIndex("Text")
+                        .IsUnique();
 
                     b.ToTable("Phrases");
                 });
