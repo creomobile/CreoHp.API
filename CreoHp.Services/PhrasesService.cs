@@ -3,6 +3,7 @@ using CreoHp.Common;
 using CreoHp.Contracts;
 using CreoHp.Dto.Pagination;
 using CreoHp.Dto.Phrases;
+using CreoHp.Dto.Tags;
 using CreoHp.Models.Phrases;
 using CreoHp.Models.Tags;
 using CreoHp.Repository;
@@ -16,6 +17,13 @@ namespace CreoHp.Services
 {
     public sealed class PhrasesService : IPhrasesService
     {
+        public static readonly TagType[] PhraseTags = new[]
+        {
+            TagType.PhraseCharacter,
+            TagType.PhraseSubject,
+            TagType.PhraseType
+        };
+
         readonly AppDbContext _dbContext;
         readonly IMapper _mapper;
 
@@ -63,11 +71,11 @@ namespace CreoHp.Services
                     .ToDictionary(g => g.Key, g => g.Select(_ => _.Id).ToArray());
 
                 var phrasesTagsIdDict = await _dbContext.Tags
-                    .Where(_ => TagsService.PhraseTags.Contains(_.Type))
+                    .Where(_ => PhraseTags.Contains(_.Type))
                     .ToDictionaryAsync(_ => _.Id, _ => _);
                 var tagsTypeDict = GetTypeDict(criteria.TagIds.Select(_ => phrasesTagsIdDict[_]));
                 IEnumerable<Guid[]> idsSets = tagsTypeDict.Values;
-                var missedTypes = TagsService.PhraseTags.Except(tagsTypeDict.Keys).ToHashSet();
+                var missedTypes = PhraseTags.Except(tagsTypeDict.Keys).ToHashSet();
                 if (missedTypes.Count != 0)
                 {
                     var missed = GetTypeDict(phrasesTagsIdDict.Values.Where(_ => missedTypes.Contains(_.Type)));
@@ -81,6 +89,27 @@ namespace CreoHp.Services
 
             var page = await query.GetSimplePage(criteria);
             return _mapper.Map<SimplePage<PhraseDto>>(page);
+        }
+
+        public async Task<PhraseTagsDto> GetTags()
+        {
+            var tags = (await _dbContext.Tags
+                .Where(_ => PhraseTags.Contains(_.Type))
+                .ToArrayAsync())
+                .GroupBy(_ => _.Type)
+                .ToDictionary(
+                    g => g.Key,
+                    g => g
+                        .OrderBy(_ => _.Position)
+                        .Select(_ => _mapper.Map<PhraseTagDto>(_))
+                        .ToArray());
+
+            return new PhraseTagsDto
+            {
+                Type = tags[TagType.PhraseType],
+                Subject = tags[TagType.PhraseSubject],
+                Character = tags[TagType.PhraseCharacter]
+            };
         }
     }
 }

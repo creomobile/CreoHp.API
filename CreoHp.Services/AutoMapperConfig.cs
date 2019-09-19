@@ -57,6 +57,7 @@ namespace CreoHp.Services
         static void ConfigureTags(IProfileExpression config)
         {
             config.CreateMap<Tag, TagDto>();
+            config.CreateMap<Tag, PhraseTagDto>();
         }
 
         static void ConfigurePhrases(IProfileExpression config)

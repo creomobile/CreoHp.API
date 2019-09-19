@@ -1,5 +1,6 @@
 ﻿using CreoHp.Dto.Pagination;
 using CreoHp.Dto.Phrases;
+using CreoHp.Dto.Tags;
 using System.Threading.Tasks;
 
 namespace CreoHp.Contracts
@@ -9,5 +10,6 @@ namespace CreoHp.Contracts
         Task<SimplePage<PhraseDto>> Search(PhrasesRequestCriteria criteria);
         Task<PhraseDto> CreatePhrase(CreatePhraseDto phrase);
         Task<PhraseDto> ModifyPhrase(PhraseDto phrase);
+        Task<PhraseTagsDto> GetTags();
     }
 }

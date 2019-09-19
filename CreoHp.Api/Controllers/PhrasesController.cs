@@ -3,6 +3,7 @@ using CreoHp.Common;
 using CreoHp.Contracts;
 using CreoHp.Dto.Pagination;
 using CreoHp.Dto.Phrases;
+using CreoHp.Dto.Tags;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -27,5 +28,9 @@ namespace CreoHp.Api.Controllers
 
         [HttpPut]
         public Task<PhraseDto> ModifyPhrase(PhraseDto phrase) => _phrasesService.ModifyPhrase(phrase);
+
+        [HttpGet("tags")]
+        public Task<PhraseTagsDto> GetPhrasesTags() => _phrasesService.GetTags();
+
     }
 }
