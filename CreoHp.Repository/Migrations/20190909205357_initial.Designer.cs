@@ -101,132 +101,192 @@ namespace CreoHp.Repository.Migrations
                         new
                         {
                             Id = new Guid("ab3a769a-e800-4e48-97b5-a577baf5ac86"),
-                            CreatedAt = new DateTime(2019, 9, 9, 20, 53, 57, 589, DateTimeKind.Utc).AddTicks(9215),
+                            CreatedAt = new DateTime(2019, 9, 19, 18, 28, 34, 145, DateTimeKind.Utc).AddTicks(6555),
                             IsDeleted = false,
                             Name = "Neutral",
                             Position = 0,
                             Type = 0,
-                            UpdatedAt = new DateTime(2019, 9, 9, 20, 53, 57, 589, DateTimeKind.Utc).AddTicks(9215)
+                            UpdatedAt = new DateTime(2019, 9, 19, 18, 28, 34, 145, DateTimeKind.Utc).AddTicks(6555)
                         },
                         new
                         {
                             Id = new Guid("c1f30ee9-ec04-448c-a5cc-3fe22c64e52a"),
-                            CreatedAt = new DateTime(2019, 9, 9, 20, 53, 57, 590, DateTimeKind.Utc).AddTicks(1168),
+                            CreatedAt = new DateTime(2019, 9, 19, 18, 28, 34, 145, DateTimeKind.Utc).AddTicks(8628),
                             IsDeleted = false,
                             Name = "Positive",
                             Position = 1,
                             Type = 0,
-                            UpdatedAt = new DateTime(2019, 9, 9, 20, 53, 57, 590, DateTimeKind.Utc).AddTicks(1168)
+                            UpdatedAt = new DateTime(2019, 9, 19, 18, 28, 34, 145, DateTimeKind.Utc).AddTicks(8628)
                         },
                         new
                         {
                             Id = new Guid("a21869d5-c093-48cb-9ce0-c80d2e08d5bd"),
-                            CreatedAt = new DateTime(2019, 9, 9, 20, 53, 57, 590, DateTimeKind.Utc).AddTicks(1193),
+                            CreatedAt = new DateTime(2019, 9, 19, 18, 28, 34, 145, DateTimeKind.Utc).AddTicks(8653),
                             IsDeleted = false,
                             Name = "Negative",
                             Position = 2,
                             Type = 0,
-                            UpdatedAt = new DateTime(2019, 9, 9, 20, 53, 57, 590, DateTimeKind.Utc).AddTicks(1193)
+                            UpdatedAt = new DateTime(2019, 9, 19, 18, 28, 34, 145, DateTimeKind.Utc).AddTicks(8653)
                         },
                         new
                         {
                             Id = new Guid("cca290de-81f5-482d-b27c-c5aea33b0886"),
-                            CreatedAt = new DateTime(2019, 9, 9, 20, 53, 57, 590, DateTimeKind.Utc).AddTicks(1212),
+                            CreatedAt = new DateTime(2019, 9, 19, 18, 28, 34, 145, DateTimeKind.Utc).AddTicks(8661),
                             IsDeleted = false,
                             Name = "Common",
                             Position = 0,
                             Type = 1,
-                            UpdatedAt = new DateTime(2019, 9, 9, 20, 53, 57, 590, DateTimeKind.Utc).AddTicks(1212)
+                            UpdatedAt = new DateTime(2019, 9, 19, 18, 28, 34, 145, DateTimeKind.Utc).AddTicks(8661)
                         },
                         new
                         {
-                            Id = new Guid("454fc2a6-7c0b-4a89-840c-d9378da0c77d"),
-                            CreatedAt = new DateTime(2019, 9, 9, 20, 53, 57, 590, DateTimeKind.Utc).AddTicks(1219),
+                            Id = new Guid("b472de0a-951a-4518-abbe-0528043e53a4"),
+                            CreatedAt = new DateTime(2019, 9, 19, 18, 28, 34, 145, DateTimeKind.Utc).AddTicks(8668),
                             IsDeleted = false,
-                            Name = "Сareer",
+                            Name = "Health",
                             Position = 1,
                             Type = 1,
-                            UpdatedAt = new DateTime(2019, 9, 9, 20, 53, 57, 590, DateTimeKind.Utc).AddTicks(1219)
+                            UpdatedAt = new DateTime(2019, 9, 19, 18, 28, 34, 145, DateTimeKind.Utc).AddTicks(8668)
                         },
                         new
                         {
-                            Id = new Guid("66956a46-cfa5-4c4f-af55-718d9d97d850"),
-                            CreatedAt = new DateTime(2019, 9, 9, 20, 53, 57, 590, DateTimeKind.Utc).AddTicks(1225),
+                            Id = new Guid("92fd3c2d-32e1-4e99-a17c-1e1814ae538e"),
+                            CreatedAt = new DateTime(2019, 9, 19, 18, 28, 34, 145, DateTimeKind.Utc).AddTicks(8674),
                             IsDeleted = false,
-                            Name = "Love",
+                            Name = "Family",
                             Position = 2,
                             Type = 1,
-                            UpdatedAt = new DateTime(2019, 9, 9, 20, 53, 57, 590, DateTimeKind.Utc).AddTicks(1225)
-                        },
-                        new
-                        {
-                            Id = new Guid("f07f9df2-fcb0-4027-bfc8-67438342458f"),
-                            CreatedAt = new DateTime(2019, 9, 9, 20, 53, 57, 590, DateTimeKind.Utc).AddTicks(1231),
-                            IsDeleted = false,
-                            Name = "Friendship",
-                            Position = 3,
-                            Type = 1,
-                            UpdatedAt = new DateTime(2019, 9, 9, 20, 53, 57, 590, DateTimeKind.Utc).AddTicks(1231)
-                        },
-                        new
-                        {
-                            Id = new Guid("134e8818-a5c8-49ea-b279-29fca5ff6ce9"),
-                            CreatedAt = new DateTime(2019, 9, 9, 20, 53, 57, 590, DateTimeKind.Utc).AddTicks(1236),
-                            IsDeleted = false,
-                            Name = "Travels",
-                            Position = 4,
-                            Type = 1,
-                            UpdatedAt = new DateTime(2019, 9, 9, 20, 53, 57, 590, DateTimeKind.Utc).AddTicks(1236)
+                            UpdatedAt = new DateTime(2019, 9, 19, 18, 28, 34, 145, DateTimeKind.Utc).AddTicks(8674)
                         },
                         new
                         {
                             Id = new Guid("ddac2fa4-964e-475f-b1ff-31fa9105fbd7"),
-                            CreatedAt = new DateTime(2019, 9, 9, 20, 53, 57, 590, DateTimeKind.Utc).AddTicks(1242),
+                            CreatedAt = new DateTime(2019, 9, 19, 18, 28, 34, 145, DateTimeKind.Utc).AddTicks(8681),
                             IsDeleted = false,
                             Name = "Children",
+                            Position = 3,
+                            Type = 1,
+                            UpdatedAt = new DateTime(2019, 9, 19, 18, 28, 34, 145, DateTimeKind.Utc).AddTicks(8681)
+                        },
+                        new
+                        {
+                            Id = new Guid("66956a46-cfa5-4c4f-af55-718d9d97d850"),
+                            CreatedAt = new DateTime(2019, 9, 19, 18, 28, 34, 145, DateTimeKind.Utc).AddTicks(8697),
+                            IsDeleted = false,
+                            Name = "Love",
+                            Position = 4,
+                            Type = 1,
+                            UpdatedAt = new DateTime(2019, 9, 19, 18, 28, 34, 145, DateTimeKind.Utc).AddTicks(8697)
+                        },
+                        new
+                        {
+                            Id = new Guid("f07f9df2-fcb0-4027-bfc8-67438342458f"),
+                            CreatedAt = new DateTime(2019, 9, 19, 18, 28, 34, 145, DateTimeKind.Utc).AddTicks(8704),
+                            IsDeleted = false,
+                            Name = "Friendship",
                             Position = 5,
                             Type = 1,
-                            UpdatedAt = new DateTime(2019, 9, 9, 20, 53, 57, 590, DateTimeKind.Utc).AddTicks(1242)
+                            UpdatedAt = new DateTime(2019, 9, 19, 18, 28, 34, 145, DateTimeKind.Utc).AddTicks(8704)
+                        },
+                        new
+                        {
+                            Id = new Guid("32eb46b5-6d6f-4c41-8495-47ad37e4b28d"),
+                            CreatedAt = new DateTime(2019, 9, 19, 18, 28, 34, 145, DateTimeKind.Utc).AddTicks(8710),
+                            IsDeleted = false,
+                            Name = "Study",
+                            Position = 6,
+                            Type = 1,
+                            UpdatedAt = new DateTime(2019, 9, 19, 18, 28, 34, 145, DateTimeKind.Utc).AddTicks(8710)
+                        },
+                        new
+                        {
+                            Id = new Guid("454fc2a6-7c0b-4a89-840c-d9378da0c77d"),
+                            CreatedAt = new DateTime(2019, 9, 19, 18, 28, 34, 145, DateTimeKind.Utc).AddTicks(8716),
+                            IsDeleted = false,
+                            Name = "Сareer",
+                            Position = 7,
+                            Type = 1,
+                            UpdatedAt = new DateTime(2019, 9, 19, 18, 28, 34, 145, DateTimeKind.Utc).AddTicks(8716)
                         },
                         new
                         {
                             Id = new Guid("48f1d60c-b834-415e-bae1-4b2c867ea93d"),
-                            CreatedAt = new DateTime(2019, 9, 9, 20, 53, 57, 590, DateTimeKind.Utc).AddTicks(1249),
+                            CreatedAt = new DateTime(2019, 9, 19, 18, 28, 34, 145, DateTimeKind.Utc).AddTicks(8721),
                             IsDeleted = false,
                             Name = "Money",
-                            Position = 6,
+                            Position = 8,
                             Type = 1,
-                            UpdatedAt = new DateTime(2019, 9, 9, 20, 53, 57, 590, DateTimeKind.Utc).AddTicks(1249)
+                            UpdatedAt = new DateTime(2019, 9, 19, 18, 28, 34, 145, DateTimeKind.Utc).AddTicks(8721)
+                        },
+                        new
+                        {
+                            Id = new Guid("82415242-c3b9-45b8-b854-92dcdb5e2cfb"),
+                            CreatedAt = new DateTime(2019, 9, 19, 18, 28, 34, 145, DateTimeKind.Utc).AddTicks(8726),
+                            IsDeleted = false,
+                            Name = "Creation",
+                            Position = 9,
+                            Type = 1,
+                            UpdatedAt = new DateTime(2019, 9, 19, 18, 28, 34, 145, DateTimeKind.Utc).AddTicks(8726)
+                        },
+                        new
+                        {
+                            Id = new Guid("134e8818-a5c8-49ea-b279-29fca5ff6ce9"),
+                            CreatedAt = new DateTime(2019, 9, 19, 18, 28, 34, 145, DateTimeKind.Utc).AddTicks(8731),
+                            IsDeleted = false,
+                            Name = "Travels",
+                            Position = 10,
+                            Type = 1,
+                            UpdatedAt = new DateTime(2019, 9, 19, 18, 28, 34, 145, DateTimeKind.Utc).AddTicks(8731)
+                        },
+                        new
+                        {
+                            Id = new Guid("5af6ac0b-d645-4a2a-9943-08599a63573e"),
+                            CreatedAt = new DateTime(2019, 9, 19, 18, 28, 34, 145, DateTimeKind.Utc).AddTicks(8737),
+                            IsDeleted = false,
+                            Name = "Intertainment",
+                            Position = 11,
+                            Type = 1,
+                            UpdatedAt = new DateTime(2019, 9, 19, 18, 28, 34, 145, DateTimeKind.Utc).AddTicks(8737)
+                        },
+                        new
+                        {
+                            Id = new Guid("7ec86883-c05d-4e55-92bb-58e7931d92af"),
+                            CreatedAt = new DateTime(2019, 9, 19, 18, 28, 34, 145, DateTimeKind.Utc).AddTicks(8745),
+                            IsDeleted = false,
+                            Name = "Shopping",
+                            Position = 12,
+                            Type = 1,
+                            UpdatedAt = new DateTime(2019, 9, 19, 18, 28, 34, 145, DateTimeKind.Utc).AddTicks(8745)
                         },
                         new
                         {
                             Id = new Guid("778be6b6-9233-454b-9511-9afef5dd9b53"),
-                            CreatedAt = new DateTime(2019, 9, 9, 20, 53, 57, 590, DateTimeKind.Utc).AddTicks(1254),
+                            CreatedAt = new DateTime(2019, 9, 19, 18, 28, 34, 145, DateTimeKind.Utc).AddTicks(8751),
                             IsDeleted = false,
                             Name = "Info",
                             Position = 0,
                             Type = 2,
-                            UpdatedAt = new DateTime(2019, 9, 9, 20, 53, 57, 590, DateTimeKind.Utc).AddTicks(1254)
+                            UpdatedAt = new DateTime(2019, 9, 19, 18, 28, 34, 145, DateTimeKind.Utc).AddTicks(8751)
                         },
                         new
                         {
                             Id = new Guid("0bdcfdbd-2b7e-480b-98e0-93c2fc61b458"),
-                            CreatedAt = new DateTime(2019, 9, 9, 20, 53, 57, 590, DateTimeKind.Utc).AddTicks(1261),
+                            CreatedAt = new DateTime(2019, 9, 19, 18, 28, 34, 145, DateTimeKind.Utc).AddTicks(8756),
                             IsDeleted = false,
                             Name = "Tip",
                             Position = 1,
                             Type = 2,
-                            UpdatedAt = new DateTime(2019, 9, 9, 20, 53, 57, 590, DateTimeKind.Utc).AddTicks(1261)
+                            UpdatedAt = new DateTime(2019, 9, 19, 18, 28, 34, 145, DateTimeKind.Utc).AddTicks(8756)
                         },
                         new
                         {
                             Id = new Guid("b8d72746-f8be-40f6-b905-23d9e2d46741"),
-                            CreatedAt = new DateTime(2019, 9, 9, 20, 53, 57, 590, DateTimeKind.Utc).AddTicks(1267),
+                            CreatedAt = new DateTime(2019, 9, 19, 18, 28, 34, 145, DateTimeKind.Utc).AddTicks(8762),
                             IsDeleted = false,
                             Name = "Warning",
                             Position = 2,
                             Type = 2,
-                            UpdatedAt = new DateTime(2019, 9, 9, 20, 53, 57, 590, DateTimeKind.Utc).AddTicks(1267)
+                            UpdatedAt = new DateTime(2019, 9, 19, 18, 28, 34, 145, DateTimeKind.Utc).AddTicks(8762)
                         });
                 });
 

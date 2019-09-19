@@ -11,7 +11,7 @@ namespace CreoHp.Repository.Configurations
         protected override void ConfigureModel(EntityTypeBuilder<Tag> builder)
         {
             builder.Property(_ => _.Name).IsUnicode().SetDefaultShortMaxLength();
-            builder.HasIndex(_ => new {_.Name, _.Type}).IsUnique();
+            builder.HasIndex(_ => new { _.Name, _.Type }).IsUnique();
 
             builder.HasMany(_ => _.Parents)
                 .WithOne(_ => _.Child)
@@ -28,8 +28,6 @@ namespace CreoHp.Repository.Configurations
                 .HasForeignKey(_ => _.TagId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            //var date = new DateTime(2019, 09, 04, 0, 0, 0, DateTimeKind.Utc);
-
             builder.HasData(
                 // PhraseСharacter
                 new Tag
@@ -38,9 +36,6 @@ namespace CreoHp.Repository.Configurations
                     Name = "Neutral",
                     Type = TagType.PhraseCharacter,
                     Position = 0,
-                    //ModifiedByUserId = Consts.SystemUserId
-                    //CreatedAt = date,
-                    //UpdatedAt = date
                 },
                 new Tag
                 {
@@ -48,9 +43,6 @@ namespace CreoHp.Repository.Configurations
                     Name = "Positive",
                     Type = TagType.PhraseCharacter,
                     Position = 1,
-                    //ModifiedByUserId = Consts.SystemUserId
-                    //CreatedAt = date,
-                    //UpdatedAt = date
                 },
                 new Tag
                 {
@@ -58,9 +50,6 @@ namespace CreoHp.Repository.Configurations
                     Name = "Negative",
                     Type = TagType.PhraseCharacter,
                     Position = 2,
-                    //ModifiedByUserId = Consts.SystemUserId
-                    //CreatedAt = date,
-                    //UpdatedAt = date
                 },
 
                 // PhraseSubject
@@ -70,69 +59,90 @@ namespace CreoHp.Repository.Configurations
                     Name = "Common",
                     Type = TagType.PhraseSubject,
                     Position = 0,
-                    //ModifiedByUserId = Consts.SystemUserId
-                    //CreatedAt = date,
-                    //UpdatedAt = date
                 },
                 new Tag
                 {
-                    Id = new Guid("454FC2A6-7C0B-4A89-840C-D9378DA0C77D"),
-                    Name = "Сareer",
+                    Id = new Guid("B472DE0A-951A-4518-ABBE-0528043E53A4"),
+                    Name = "Health",
                     Type = TagType.PhraseSubject,
                     Position = 1,
-                    //ModifiedByUserId = Consts.SystemUserId
-                    //CreatedAt = date,
-                    //UpdatedAt = date
                 },
                 new Tag
                 {
-                    Id = new Guid("66956A46-CFA5-4C4F-AF55-718D9D97D850"),
-                    Name = "Love",
+                    Id = new Guid("92FD3C2D-32E1-4E99-A17C-1E1814AE538E"),
+                    Name = "Family",
                     Type = TagType.PhraseSubject,
                     Position = 2,
-                    //ModifiedByUserId = Consts.SystemUserId
-                    //CreatedAt = date,
-                    //UpdatedAt = date
-                },
-                new Tag
-                {
-                    Id = new Guid("F07F9DF2-FCB0-4027-BFC8-67438342458F"),
-                    Name = "Friendship",
-                    Type = TagType.PhraseSubject,
-                    Position = 3,
-                    //ModifiedByUserId = Consts.SystemUserId
-                    //CreatedAt = date,
-                    //UpdatedAt = date
-                },
-                new Tag
-                {
-                    Id = new Guid("134E8818-A5C8-49EA-B279-29FCA5FF6CE9"),
-                    Name = "Travels",
-                    Type = TagType.PhraseSubject,
-                    Position = 4,
-                    //ModifiedByUserId = Consts.SystemUserId
-                    //CreatedAt = date,
-                    //UpdatedAt = date
                 },
                 new Tag
                 {
                     Id = new Guid("DDAC2FA4-964E-475F-B1FF-31FA9105FBD7"),
                     Name = "Children",
                     Type = TagType.PhraseSubject,
+                    Position = 3,
+                },
+                new Tag
+                {
+                    Id = new Guid("66956A46-CFA5-4C4F-AF55-718D9D97D850"),
+                    Name = "Love",
+                    Type = TagType.PhraseSubject,
+                    Position = 4,
+                },
+                new Tag
+                {
+                    Id = new Guid("F07F9DF2-FCB0-4027-BFC8-67438342458F"),
+                    Name = "Friendship",
+                    Type = TagType.PhraseSubject,
                     Position = 5,
-                    //ModifiedByUserId = Consts.SystemUserId
-                    //CreatedAt = date,
-                    //UpdatedAt = date
+                },
+                new Tag
+                {
+                    Id = new Guid("32EB46B5-6D6F-4C41-8495-47AD37E4B28D"),
+                    Name = "Study",
+                    Type = TagType.PhraseSubject,
+                    Position = 6,
+                },
+                new Tag
+                {
+                    Id = new Guid("454FC2A6-7C0B-4A89-840C-D9378DA0C77D"),
+                    Name = "Сareer",
+                    Type = TagType.PhraseSubject,
+                    Position = 7,
                 },
                 new Tag
                 {
                     Id = new Guid("48F1D60C-B834-415E-BAE1-4B2C867EA93D"),
                     Name = "Money",
                     Type = TagType.PhraseSubject,
-                    Position = 6,
-                    //ModifiedByUserId = Consts.SystemUserId
-                    //CreatedAt = date,
-                    //UpdatedAt = date
+                    Position = 8,
+                },
+                new Tag
+                {
+                    Id = new Guid("82415242-C3B9-45B8-B854-92DCDB5E2CFB"),
+                    Name = "Creation",
+                    Type = TagType.PhraseSubject,
+                    Position = 9,
+                },
+                new Tag
+                {
+                    Id = new Guid("134E8818-A5C8-49EA-B279-29FCA5FF6CE9"),
+                    Name = "Travels",
+                    Type = TagType.PhraseSubject,
+                    Position = 10,
+                },
+                new Tag
+                {
+                    Id = new Guid("5AF6AC0B-D645-4A2A-9943-08599A63573E"),
+                    Name = "Intertainment",
+                    Type = TagType.PhraseSubject,
+                    Position = 11,
+                },
+                new Tag
+                {
+                    Id = new Guid("7EC86883-C05D-4E55-92BB-58E7931D92AF"),
+                    Name = "Shopping",
+                    Type = TagType.PhraseSubject,
+                    Position = 12,
                 },
 
                 // PhraseType
@@ -142,9 +152,6 @@ namespace CreoHp.Repository.Configurations
                     Name = "Info",
                     Type = TagType.PhraseType,
                     Position = 0,
-                    //ModifiedByUserId = Consts.SystemUserId
-                    //CreatedAt = date,
-                    //UpdatedAt = date
                 },
                 new Tag
                 {
@@ -152,9 +159,6 @@ namespace CreoHp.Repository.Configurations
                     Name = "Tip",
                     Type = TagType.PhraseType,
                     Position = 1,
-                    //ModifiedByUserId = Consts.SystemUserId
-                    //CreatedAt = date,
-                    //UpdatedAt = date
                 },
                 new Tag
                 {
@@ -162,9 +166,6 @@ namespace CreoHp.Repository.Configurations
                     Name = "Warning",
                     Type = TagType.PhraseType,
                     Position = 2,
-                    //ModifiedByUserId = Consts.SystemUserId
-                    //CreatedAt = date,
-                    //UpdatedAt = date
                 }
             );
         }
