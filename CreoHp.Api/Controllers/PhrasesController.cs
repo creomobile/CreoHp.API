@@ -24,10 +24,10 @@ namespace CreoHp.Api.Controllers
         public Task<SimplePage<PhraseDto>> Search([FromQuery] PhrasesRequestCriteria criteria) => _phrasesService.Search(criteria);
 
         [HttpPost]
-        public Task<PhraseDto> CreatePhrase(CreatePhraseDto phrase) => _phrasesService.CreatePhrase(phrase);
+        public Task<PhraseDto> CreatePhrase(CreatePhraseDto phrase) => _phrasesService.Create(phrase);
 
         [HttpPut]
-        public Task<PhraseDto> ModifyPhrase(PhraseDto phrase) => _phrasesService.ModifyPhrase(phrase);
+        public Task<PhraseDto> ModifyPhrase(PhraseDto phrase) => _phrasesService.Modify(phrase);
 
         [HttpGet("tags")]
         public Task<PhraseTagsDto> GetPhrasesTags() => _phrasesService.GetTags();

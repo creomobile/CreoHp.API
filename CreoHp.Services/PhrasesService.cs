@@ -33,7 +33,7 @@ namespace CreoHp.Services
             _mapper = mapper ?? throw new ArgumentException(nameof(mapper));
         }
 
-        public async Task<PhraseDto> CreatePhrase(CreatePhraseDto phrase)
+        public async Task<PhraseDto> Create(CreatePhraseDto phrase)
         {
             var model = _mapper.Map<Phrase>(phrase);
             _dbContext.Add(model);
@@ -41,7 +41,7 @@ namespace CreoHp.Services
             return _mapper.Map<PhraseDto>(model);
         }
 
-        public async Task<PhraseDto> ModifyPhrase(PhraseDto phrase)
+        public async Task<PhraseDto> Modify(PhraseDto phrase)
         {
             var model = _mapper.Map<Phrase>(phrase);
             var source = await _dbContext.Phrases
