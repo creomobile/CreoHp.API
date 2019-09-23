@@ -59,7 +59,7 @@ namespace CreoHp.Services
 
         public async Task<SimplePage<PhraseDto>> Search(PhrasesRequestCriteria criteria)
         {
-            IQueryable<Phrase> query = _dbContext.Phrases;
+            IQueryable<Phrase> query = _dbContext.Phrases.Include(_ => _.Tags);
 
             if (!string.IsNullOrWhiteSpace(criteria.Q))
                 query = query.Where(_ => _.Text.Contains(criteria.Q));
