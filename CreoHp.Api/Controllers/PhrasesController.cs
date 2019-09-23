@@ -29,6 +29,9 @@ namespace CreoHp.Api.Controllers
         [HttpPut]
         public Task<PhraseDto> ModifyPhrase(PhraseDto phrase) => _phrasesService.Modify(phrase);
 
+        [HttpDelete]
+        public Task Remove([FromQuery] Guid phraseId) => _phrasesService.Remove(phraseId);
+
         [HttpGet("tags")]
         public Task<PhraseTagsDto> GetPhrasesTags() => _phrasesService.GetTags();
 

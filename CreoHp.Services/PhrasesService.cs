@@ -57,6 +57,13 @@ namespace CreoHp.Services
             return _mapper.Map<PhraseDto>(model);
         }
 
+        public Task Remove(Guid phraseId)
+        {
+            var phrase = _dbContext.Phrases.Find(phraseId);
+            phrase.IsDeleted = true;
+            return _dbContext.SaveChangesAsync();
+        }
+
         public async Task<SimplePage<PhraseDto>> Search(PhrasesRequestCriteria criteria)
         {
             IQueryable<Phrase> query = _dbContext.Phrases.Include(_ => _.Tags);
