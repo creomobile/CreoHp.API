@@ -41,7 +41,7 @@ namespace CreoHp.Services
             return _mapper.Map<PhraseDto>(model);
         }
 
-        public async Task<PhraseDto> Modify(PhraseDto phrase)
+        public async Task<PhraseDto> Modify(UpdatePhraseDto phrase)
         {
             var model = _mapper.Map<Phrase>(phrase);
             var source = await _dbContext.Phrases

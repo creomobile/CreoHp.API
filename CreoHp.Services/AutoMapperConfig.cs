@@ -68,7 +68,7 @@ namespace CreoHp.Services
                 .ForMember(d => d.Text, opt => opt.MapFrom(s => s.Text))
                 .AfterMap((s, d) => d.Tags = s.TagIds.Select(_ => new PhraseTag { PhraseId = d.Id, TagId = _ }).ToArray())
                 .ForAllOtherMembers(opt => opt.Ignore());
-            config.CreateMap<PhraseDto, Phrase>()
+            config.CreateMap<UpdatePhraseDto, Phrase>()
                 .IncludeBase<CreatePhraseDto, Phrase>()
                 .ForMember(d => d.Id, opt => opt.MapFrom(s => s.Id));
         }

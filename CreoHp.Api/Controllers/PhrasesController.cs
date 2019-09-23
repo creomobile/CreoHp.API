@@ -27,7 +27,7 @@ namespace CreoHp.Api.Controllers
         public Task<PhraseDto> CreatePhrase(CreatePhraseDto phrase) => _phrasesService.Create(phrase);
 
         [HttpPut]
-        public Task<PhraseDto> ModifyPhrase(PhraseDto phrase) => _phrasesService.Modify(phrase);
+        public Task<PhraseDto> ModifyPhrase(UpdatePhraseDto phrase) => _phrasesService.Modify(phrase);
 
         [HttpDelete]
         public Task Remove([FromQuery] Guid phraseId) => _phrasesService.Remove(phraseId);

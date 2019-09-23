@@ -10,7 +10,7 @@ namespace CreoHp.Contracts
     {
         Task<SimplePage<PhraseDto>> Search(PhrasesRequestCriteria criteria);
         Task<PhraseDto> Create(CreatePhraseDto phrase);
-        Task<PhraseDto> Modify(PhraseDto phrase);
+        Task<PhraseDto> Modify(UpdatePhraseDto phrase);
         Task Remove(Guid phraseId);
         Task<PhraseTagsDto> GetTags();
     }
