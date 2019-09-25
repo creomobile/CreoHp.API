@@ -8,7 +8,7 @@ namespace CreoHp.Services
 {
     static class PaginationHelper
     {
-        public const int DefaultItemsPerPage = 20;
+        public const int DefaultItemsPerPage = 30;
 
         public static async Task<SimplePage<TSource>> GetSimplePage<TSource>(
             this IQueryable<TSource> source, PaginationCriteria criteria)
