@@ -10,6 +10,7 @@ using CreoHp.Repository;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -33,16 +34,42 @@ namespace CreoHp.Services
             _mapper = mapper ?? throw new ArgumentException(nameof(mapper));
         }
 
+        async Task DeleteRemovedPhrase(string text)
+        {
+            var phrase = await _dbContext.Phrases
+                .IgnoreQueryFilters()
+                .Include(_ => _.Tags)
+                .FirstOrDefaultAsync(_ => _.IsDeleted && _.Text == text);
+            if (phrase == null) return;
+            _dbContext.RemoveRange(phrase.Tags);
+            _dbContext.Remove(phrase);
+        }
+
+        async Task SaveAndCheckUnique(CreatePhraseDto phrase)
+        {
+            try
+            {
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (DbUpdateException ex) when (ex.InnerException is SqlException sql && sql.Number == 2601)
+            {
+                var text = phrase.Text.Length > 10 ? phrase.Text.Substring(0, 10) + "..." : phrase.Text;
+                throw new AppException($"The phrase with the text '{text}' is already exists");
+            }
+        }
+
         public async Task<PhraseDto> Create(CreatePhraseDto phrase)
         {
+            await DeleteRemovedPhrase(phrase.Text);
             var model = _mapper.Map<Phrase>(phrase);
             _dbContext.Add(model);
-            await _dbContext.SaveChangesAsync();
+            await SaveAndCheckUnique(phrase);
             return _mapper.Map<PhraseDto>(model);
         }
 
         public async Task<PhraseDto> Modify(UpdatePhraseDto phrase)
         {
+            await DeleteRemovedPhrase(phrase.Text);
             var model = _mapper.Map<Phrase>(phrase);
             var source = await _dbContext.Phrases
                 .Include(_ => _.Tags)
@@ -50,11 +77,13 @@ namespace CreoHp.Services
 
             _dbContext.ModifyCollection(source.Tags, model.Tags);
 
-            if (model.Text != source.Text)
-                _dbContext.Update(model);
+            if (source.Text == model.Text)
+                source.UpdatedAt = DateTime.UtcNow;
+            else
+                source.Text = model.Text;
 
-            await _dbContext.SaveChangesAsync();
-            return _mapper.Map<PhraseDto>(model);
+            await SaveAndCheckUnique(phrase);
+            return _mapper.Map<PhraseDto>(source);
         }
 
         public Task Remove(Guid phraseId)
@@ -93,6 +122,8 @@ namespace CreoHp.Services
 
                 query = query.Where(p => p.Tags.Select(_ => _.TagId).All(_ => tagIds.Contains(_)));
             }
+
+            query = query.OrderByDescending(_ => _.UpdatedAt);
 
             var page = await query.GetSimplePage(criteria);
             return _mapper.Map<SimplePage<PhraseDto>>(page);
