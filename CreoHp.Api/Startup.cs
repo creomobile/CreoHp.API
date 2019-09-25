@@ -34,6 +34,10 @@ namespace CreoHp.Api
                 .AddJsonOptions(options =>
                 {
                     options.SerializerSettings.Converters.Add(new StringEnumConverter(true));
+                    options.SerializerSettings.Converters.Add(new IsoDateTimeConverter()
+                    {
+                        DateTimeFormat = "yyyy-MM-ddTHH:mm:ss.fffZ"
+                    });
                     options.SerializerSettings.NullValueHandling = NullValueHandling.Include;
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
