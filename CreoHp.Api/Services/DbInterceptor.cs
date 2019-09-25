@@ -27,7 +27,11 @@ namespace CreoHp.Api.Services
                 .Select(p => p.Entity)
                 .OfType<ModelBase>()
                 .ToList()
-                .ForEach(p => p.ModifiedByUserId = userId.Value);
+                .ForEach(_ =>
+                {
+                    _.ModifiedByUserId = userId.Value;
+                    _.UpdatedAt = DateTime.UtcNow;
+                });
 
             return Task.CompletedTask;
         }
