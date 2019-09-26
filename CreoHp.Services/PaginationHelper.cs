@@ -10,15 +10,16 @@ namespace CreoHp.Services
     {
         public const int DefaultItemsPerPage = 30;
 
-        public static async Task<SimplePage<TSource>> GetSimplePage<TSource>(
-            this IQueryable<TSource> source, PaginationCriteria criteria)
+        public static async Task<SimplePage<TSource>> GetPage<TSource>(
+            this IQueryable<TSource> source, PaginationCriteriaBase criteria)
         {
             var itemsPerPage = criteria.ItemsPerPage ?? DefaultItemsPerPage;
             if (itemsPerPage < 1)
                 throw new AppException($"Invalid ItemsPerPage ({criteria.ItemsPerPage})");
 
+            if (criteria is PaginationCriteria c) source = source.Skip(itemsPerPage * c.PageNum);
+
             var items = await source
-                .Skip(itemsPerPage * criteria.PageNum)
                 .Take(itemsPerPage + 1)
                 .ToArrayAsync();
 

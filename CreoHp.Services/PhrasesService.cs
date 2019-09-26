@@ -125,7 +125,14 @@ namespace CreoHp.Services
 
             query = query.OrderByDescending(_ => _.UpdatedAt);
 
-            var page = await query.GetSimplePage(criteria);
+            if (criteria.FromItem != null)
+            {
+                var fromPhrase = await _dbContext.FindAsync<Phrase>(criteria.FromItem);
+                query = query.Where(_ => _.UpdatedAt < fromPhrase.UpdatedAt);
+            }
+
+            var page = await query.GetPage(criteria);
+
             return _mapper.Map<SimplePage<PhraseDto>>(page);
         }
 
