@@ -10,8 +10,8 @@ namespace CreoHp.Services
     {
         public const int DefaultItemsPerPage = 30;
 
-        public static async Task<SimplePage<TSource>> GetPage<TSource>(
-            this IQueryable<TSource> source, PaginationCriteriaBase criteria)
+        static async Task<TPage> GetPageBase<TPage, TItem>(IQueryable<TItem> source, PaginationCriteriaBase criteria)
+            where TPage : SimplePage<TItem>, new()
         {
             var itemsPerPage = criteria.ItemsPerPage ?? DefaultItemsPerPage;
             if (itemsPerPage < 1)
@@ -23,11 +23,21 @@ namespace CreoHp.Services
                 .Take(itemsPerPage + 1)
                 .ToArrayAsync();
 
-            return new SimplePage<TSource>
+            return new TPage
             {
                 Items = items.Take(itemsPerPage).ToArray(),
                 HasMore = items.Length > itemsPerPage
             };
+        }
+
+        public static Task<SimplePage<T>> GetSimplePage<T>(
+            this IQueryable<T> source, PaginationCriteriaBase criteria) => GetPageBase<SimplePage<T>, T>(source, criteria);
+
+        public static async Task<Page<T>> GetPage<T>(this IQueryable<T> source, PaginationCriteriaBase criteria)
+        {
+            var page = await GetPageBase<Page<T>, T>(source, criteria);
+            page.Total = await source.CountAsync();
+            return page;
         }
     }
 }

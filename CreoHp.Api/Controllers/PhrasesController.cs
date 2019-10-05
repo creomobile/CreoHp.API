@@ -21,7 +21,7 @@ namespace CreoHp.Api.Controllers
         }
 
         [HttpGet]
-        public Task<SimplePage<PhraseDto>> Search([FromQuery] PhrasesRequestCriteria criteria) => _phrasesService.Search(criteria);
+        public Task<Page<PhraseDto>> Search([FromQuery] PhrasesRequestCriteria criteria) => _phrasesService.Search(criteria);
 
         [HttpPost]
         public Task<PhraseDto> CreatePhrase(CreatePhraseDto phrase) => _phrasesService.Create(phrase);

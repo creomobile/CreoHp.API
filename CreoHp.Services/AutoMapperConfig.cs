@@ -29,6 +29,7 @@ namespace CreoHp.Services
         static void ConfigurePagination(IProfileExpression config)
         {
             config.CreateMap(typeof(SimplePage<>), typeof(SimplePage<>));
+            config.CreateMap(typeof(Page<>), typeof(Page<>));
         }
 
         static void ConfigureUsers(IProfileExpression config, IRolesHelper rolesHelper)

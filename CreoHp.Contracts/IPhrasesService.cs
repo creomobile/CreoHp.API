@@ -8,7 +8,7 @@ namespace CreoHp.Contracts
 {
     public interface IPhrasesService
     {
-        Task<SimplePage<PhraseDto>> Search(PhrasesRequestCriteria criteria);
+        Task<Page<PhraseDto>> Search(PhrasesRequestCriteria criteria);
         Task<PhraseDto> Create(CreatePhraseDto phrase);
         Task<PhraseDto> Modify(UpdatePhraseDto phrase);
         Task Remove(Guid phraseId);

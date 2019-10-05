@@ -105,7 +105,7 @@ namespace CreoHp.Services
                     user.Roles.Select(role => role.RoleId).Any(roleId => roles.Contains(roleId)));
             }
 
-            var page = await query.GetPage(criteria);
+            var page = await query.GetSimplePage(criteria);
             var result = _mapper.Map<SimplePage<UserWithRolesDto>>(page);
 
             return result;

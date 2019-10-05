@@ -93,7 +93,7 @@ namespace CreoHp.Services
             return _dbContext.SaveChangesAsync();
         }
 
-        public async Task<SimplePage<PhraseDto>> Search(PhrasesRequestCriteria criteria)
+        public async Task<Page<PhraseDto>> Search(PhrasesRequestCriteria criteria)
         {
             IQueryable<Phrase> query = _dbContext.Phrases.Include(_ => _.Tags);
 
@@ -123,7 +123,7 @@ namespace CreoHp.Services
 
             var page = await query.GetPage(criteria);
 
-            return _mapper.Map<SimplePage<PhraseDto>>(page);
+            return _mapper.Map<Page<PhraseDto>>(page);
         }
 
         public async Task<PhraseTagsDto> GetTags()
