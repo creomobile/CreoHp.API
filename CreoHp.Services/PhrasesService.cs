@@ -102,25 +102,15 @@ namespace CreoHp.Services
 
             if (criteria.TagIds?.Any() == true)
             {
-                Dictionary<TagType, Guid[]> GetTypeDict(IEnumerable<Tag> tags) => tags
-                    .GroupBy(_ => _.Type)
-                    .ToDictionary(g => g.Key, g => g.Select(_ => _.Id).ToArray());
-
-                var phrasesTagsIdDict = await _dbContext.Tags
+                var idDict = await _dbContext.Tags
                     .Where(_ => PhraseTags.Contains(_.Type))
                     .ToDictionaryAsync(_ => _.Id, _ => _);
-                var tagsTypeDict = GetTypeDict(criteria.TagIds.Select(_ => phrasesTagsIdDict[_]));
-                IEnumerable<Guid[]> idsSets = tagsTypeDict.Values;
-                var missedTypes = PhraseTags.Except(tagsTypeDict.Keys).ToHashSet();
-                if (missedTypes.Count != 0)
-                {
-                    var missed = GetTypeDict(phrasesTagsIdDict.Values.Where(_ => missedTypes.Contains(_.Type)));
-                    idsSets = idsSets.Concat(missed.Values);
-                }
+                var typeDict = criteria.TagIds
+                    .GroupBy(_ => idDict[_].Type)
+                    .ToDictionary(_ => _.Key, _ => _.ToArray());
 
-                var tagIds = idsSets.SelectMany(_ => _);
-
-                query = query.Where(p => p.Tags.Select(_ => _.TagId).All(_ => tagIds.Contains(_)));
+                foreach (var ids in typeDict.Values)
+                    query = query.Where(p => p.Tags.Any(t => ids.Contains(t.TagId)));
             }
 
             query = query.OrderByDescending(_ => _.UpdatedAt);
