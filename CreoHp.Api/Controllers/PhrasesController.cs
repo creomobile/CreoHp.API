@@ -14,10 +14,12 @@ namespace CreoHp.Api.Controllers
     public class PhrasesController : ControllerBase
     {
         readonly IPhrasesService _phrasesService;
+        readonly IPhrasesCollectorService _phrasesCollectorService;
 
-        public PhrasesController(IPhrasesService phrasesService)
+        public PhrasesController(IPhrasesService phrasesService, IPhrasesCollectorService phrasesCollectorService)
         {
             _phrasesService = phrasesService ?? throw new ArgumentException(nameof(phrasesService));
+            _phrasesCollectorService = phrasesCollectorService ?? throw new ArgumentException(nameof(phrasesCollectorService));
         }
 
         [HttpGet]
@@ -35,5 +37,7 @@ namespace CreoHp.Api.Controllers
         [HttpGet("tags")]
         public Task<PhraseTagsDto> GetPhrasesTags() => _phrasesService.GetTags();
 
+        [HttpGet("collect")]
+        public Task<string[]> Collect([FromQuery] string keyPhrase, [FromQuery] int max) => _phrasesCollectorService.Collect(keyPhrase, max);
     }
 }

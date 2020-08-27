@@ -12,6 +12,8 @@ namespace CreoHp.Repository
             modelBuilder.ApplyConfiguration(new AppIdentityUserConfiguration());
             modelBuilder.ApplyConfiguration(new AppIdentityUserRoleConfiguration());
             modelBuilder.ApplyConfiguration(new PhraseConfiguration());
+            modelBuilder.ApplyConfiguration(new PhraseCollectionConfiguration());
+            modelBuilder.ApplyConfiguration(new BadCollectionUrlConfiguration());
             modelBuilder.ApplyConfiguration(new TagConfiguration());
             modelBuilder.ApplyConfiguration(new TagRelationConfiguration());
             modelBuilder.ApplyConfiguration(new PhraseTagConfiguration());
@@ -19,7 +21,6 @@ namespace CreoHp.Repository
 
         public static PropertyBuilder<TProperty> SetDefaultShortMaxLength<TProperty>(
             this PropertyBuilder<TProperty> builder)
-            => builder
-                .HasMaxLength(Consts.ShortStringMaxLength);
+            => builder.HasMaxLength(Consts.ShortStringMaxLength);
     }
 }

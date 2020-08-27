@@ -18,7 +18,8 @@ namespace CreoHp.Api.Extensions
             .AddScoped<IPrincipalService, PrincipalService>()
             .AddScoped<IUsersService, UsersService>()
             .AddScoped<ITagsService, TagsService>()
-            .AddScoped<IPhrasesService, PhrasesService>();
+            .AddScoped<IPhrasesService, PhrasesService>()
+            .AddScoped<IPhrasesCollectorService, PhrasesCollectorService>();
 
         static IServiceCollection ConfigureOptions(this IServiceCollection services
             , IConfiguration configuration)

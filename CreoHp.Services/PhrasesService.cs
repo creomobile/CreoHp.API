@@ -5,12 +5,10 @@ using CreoHp.Dto.Pagination;
 using CreoHp.Dto.Phrases;
 using CreoHp.Dto.Tags;
 using CreoHp.Models.Phrases;
-using CreoHp.Models.Tags;
 using CreoHp.Repository;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -39,9 +37,11 @@ namespace CreoHp.Services
             var phrase = await _dbContext.Phrases
                 .IgnoreQueryFilters()
                 .Include(_ => _.Tags)
+                .Include(_ => _.Collection)
                 .FirstOrDefaultAsync(_ => _.IsDeleted && _.Text == text);
             if (phrase == null) return;
             _dbContext.RemoveRange(phrase.Tags);
+            if (phrase.Collection != null) _dbContext.Remove(phrase.Collection);
             _dbContext.Remove(phrase);
         }
 
@@ -86,11 +86,16 @@ namespace CreoHp.Services
             return _mapper.Map<PhraseDto>(source);
         }
 
-        public Task Remove(Guid phraseId)
+        public async Task Remove(Guid phraseId)
         {
-            var phrase = _dbContext.Phrases.Find(phraseId);
+            var phrase = await _dbContext.Phrases
+                .Include(p => p.Collection)
+                .FirstOrDefaultAsync(p => p.Id == phraseId);
+
             phrase.IsDeleted = true;
-            return _dbContext.SaveChangesAsync();
+            if (phrase.Collection != null) phrase.Collection.IsDeleted = true;
+
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task<Page<PhraseDto>> Search(PhrasesRequestCriteria criteria)

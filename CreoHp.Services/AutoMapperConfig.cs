@@ -6,6 +6,7 @@ using CreoHp.Dto.Pagination;
 using CreoHp.Dto.Phrases;
 using CreoHp.Dto.Tags;
 using CreoHp.Dto.Users;
+using CreoHp.Models.PhraseCollections;
 using CreoHp.Models.Phrases;
 using CreoHp.Models.Tags;
 using CreoHp.Models.Users;
@@ -64,10 +65,15 @@ namespace CreoHp.Services
         static void ConfigurePhrases(IProfileExpression config)
         {
             config.CreateMap<Phrase, PhraseDto>()
-                .ForMember(d => d.TagIds, opt => opt.MapFrom(s => s.Tags.Select(_ => _.TagId).ToArray()));
+                .ForMember(d => d.TagIds, opt => opt.MapFrom(s => s.Tags.Select(_ => _.TagId).ToArray()))
+                .ForMember(d => d.OriginalText, opt => opt.MapFrom(s => s.Collection == null ? null : s.Collection.OriginalText))
+                .AfterMap((s, d) => d.OriginalText = s.Collection?.OriginalText);
             config.CreateMap<CreatePhraseDto, Phrase>()
                 .ForMember(d => d.Text, opt => opt.MapFrom(s => s.Text))
                 .AfterMap((s, d) => d.Tags = s.TagIds.Select(_ => new PhraseTag { PhraseId = d.Id, TagId = _ }).ToArray())
+                .AfterMap((s, d) => d.Collection = string.IsNullOrEmpty(s.OriginalText)
+                    ? null
+                    : new PhraseCollection { PhraseId = d.Id, OriginalText = s.OriginalText })
                 .ForAllOtherMembers(opt => opt.Ignore());
             config.CreateMap<UpdatePhraseDto, Phrase>()
                 .IncludeBase<CreatePhraseDto, Phrase>()

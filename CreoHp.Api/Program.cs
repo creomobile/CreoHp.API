@@ -17,10 +17,10 @@ namespace CreoHp.Api
             WebHost.CreateDefaultBuilder(args)
                 .UseKestrel(options =>
                 {
-                    options.Listen(IPAddress.Parse("192.168.1.10"), 5000);
-                    options.Listen(IPAddress.Parse("192.168.1.10"), 5001, listenOptions =>
+                    options.Listen(IPAddress.Parse("192.168.1.11"), 5000);
+                    options.Listen(IPAddress.Parse("192.168.1.11"), 5001, listenOptions =>
                     {
-                        listenOptions.UseHttps(storeName: StoreName.My, "*.creomobile.com");
+                        listenOptions.UseHttps(storeName: StoreName.My, "creomobile.com");
                     });
                 })
                 .UseConfiguration(ConfigurationExtensions.Create())

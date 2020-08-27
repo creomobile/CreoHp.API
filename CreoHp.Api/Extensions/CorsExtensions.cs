@@ -13,7 +13,6 @@ namespace CreoHp.Api.Extensions
                 .AllowAnyOrigin()
                 .AllowAnyMethod()
                 .AllowAnyHeader()
-                .AllowCredentials()
                 .SetPreflightMaxAge(TimeSpan.FromDays(1))));
         public static IApplicationBuilder UseAppCors(this IApplicationBuilder builder) =>
             builder.UseCors(PolicyName);

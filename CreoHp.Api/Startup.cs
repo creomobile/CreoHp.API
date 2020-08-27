@@ -5,15 +5,23 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 
 namespace CreoHp.Api
 {
     public sealed class Startup
     {
-        public Startup(IConfiguration configuration) => Configuration = configuration;
+        readonly ILogger<AppExceptionFilterAttribute> _appExceptionLogger;
+
+        public Startup(IConfiguration configuration, ILogger<AppExceptionFilterAttribute> appExceptionLogger)
+        {
+            Configuration = configuration;
+            _appExceptionLogger = appExceptionLogger;
+        }
 
         public IConfiguration Configuration { get; }
 
@@ -26,24 +34,21 @@ namespace CreoHp.Api
                 .AddDependencies(Configuration)
                 .AddAppCors()
                 .AddSwaggerServices()
-                .AddMvc(options =>
+                .AddControllers(p => p.Filters.Insert(0, new AppExceptionFilterAttribute(_appExceptionLogger)))
+                .AddNewtonsoftJson(options =>
                 {
-                    options.Filters.Insert(0, new AppExceptionFilterAttribute(
-                        services.BuildServiceProvider().GetService<ILogger<AppExceptionFilterAttribute>>()));
+                    var serializerSettings = options.SerializerSettings;
+                    var converters = serializerSettings.Converters;
+
+                    converters.Add(new StringEnumConverter(typeof(CamelCaseNamingStrategy)));
+                    converters.Add(new IsoDateTimeConverter { DateTimeFormat = "yyyy-MM-ddTHH:mm:ss.fffZ" });
+
+                    serializerSettings.NullValueHandling = NullValueHandling.Include;
                 })
-                .AddJsonOptions(options =>
-                {
-                    options.SerializerSettings.Converters.Add(new StringEnumConverter(true));
-                    options.SerializerSettings.Converters.Add(new IsoDateTimeConverter()
-                    {
-                        DateTimeFormat = "yyyy-MM-ddTHH:mm:ss.fffZ"
-                    });
-                    options.SerializerSettings.NullValueHandling = NullValueHandling.Include;
-                })
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+                .SetCompatibilityVersion(CompatibilityVersion.Latest);
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseAppCors();
 
@@ -57,11 +62,12 @@ namespace CreoHp.Api
             }
 
             app
-                //.UseHttpsRedirection()
+                .UseRouting()
                 .UseStaticFiles()
                 .UseSwagger()
                 .UseAuthentication()
-                .UseMvc()
+                .UseAuthorization()
+                .UseEndpoints(p => p.MapControllers())
                 .ApplyMigrations()
                 .InitAppData();
         }

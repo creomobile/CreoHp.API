@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using CreoHp.Models.PhraseCollections;
 using CreoHp.Models.Phrases;
 using CreoHp.Models.Tags;
 using CreoHp.Models.Users;
@@ -54,6 +55,8 @@ namespace CreoHp.Repository
         }
 
         public DbSet<Phrase> Phrases { get; set; }
+        public DbSet<PhraseCollection> PhraseCollections { get; set; }
+        public DbSet<BadCollectionUrl> BadCollectionUrls { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<TagRelation> TagRelations { get; set; }
         public DbSet<PhraseTag> PhraseTags { get; set; }
